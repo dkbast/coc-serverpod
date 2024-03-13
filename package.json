@@ -1,6 +1,6 @@
 {
   "name": "coc-serverpod",
-  "version": "0.0.0-development",
+  "version": "0.0.2-development",
   "description": "LSP support for serverpod yaml files",
   "author": "Damian Bast <me@damianbast.com>",
   "license": "SEE LICENSE IN LICENSE.txt",

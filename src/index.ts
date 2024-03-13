@@ -20,7 +20,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
       env: process.env,
       shell: true,
     },
-    transport: TransportKind.stdio,
   };
   const clientOptions = {
     revealOutputChannelOn: RevealOutputChannelOn.Info,
