@@ -3,6 +3,7 @@ import {
   services,
   workspace,
   LanguageClient,
+  TransportKind,
 } from "coc.nvim";
 
 export async function activate(context: ExtensionContext): Promise<void> {
