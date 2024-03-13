@@ -17,23 +17,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
     return;
   }
 
-  let output;
-  try {
-    output = execSync("serverpod version");
-  } catch (e) {
-    window.showErrorMessage(
-      "Failed to resolve the Serverpod CLI executable. Please ensure the Serverpod CLI is installed and available on the PATH used by VS Code."
-    );
-    return;
-  }
-
-  if (!validVersion(output.toString().trim())) {
-    window.showErrorMessage(
-      "The Serverpod CLI version is outdated. Please upgrade to the latest version (minimum required version is 1.2)."
-    );
-    return;
-  }
-
   const serverOptions = {
     command: "serverpod",
     args: ["-q", "language-server"],
@@ -59,14 +42,22 @@ export async function activate(context: ExtensionContext): Promise<void> {
   );
   context.subscriptions.push(services.registLanguageClient(client));
   client.onReady().then(() => {
-    if (!config.get<boolean>("startupMessage", true)) {
+    let output;
+    try {
+      output = execSync("serverpod version");
+    } catch (e) {
+      window.showErrorMessage(
+        "Failed to resolve the Serverpod CLI executable. Please ensure the Serverpod CLI is installed and available on the PATH used by VS Code."
+      );
       return;
     }
-    const executable = serverOptions.command;
-    const args = serverOptions.args;
-    const cmd =
-      args.length === 0 ? executable : `${executable} ${args.join(" ")}`;
-    window.showMessage(`coc-serverpod: running "${cmd}"`);
+
+    if (!validVersion(output.toString().trim())) {
+      window.showErrorMessage(
+        "The Serverpod CLI version is outdated. Please upgrade to the latest version (minimum required version is 1.2)."
+      );
+      return;
+    }
   });
 }
 
