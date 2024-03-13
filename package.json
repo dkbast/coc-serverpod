@@ -1,0 +1,42 @@
+{
+  "name": "coc-serverpod",
+  "version": "0.0.0-development",
+  "description": "LSP support for serverpod yaml files",
+  "author": "Damian Bast <me@damianbast.com>",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "main": "lib/index.js",
+  "keywords": ["coc.nvim"],
+  "engines": {
+    "coc": "^0.0.82"
+  },
+  "scripts": {
+    "watch": "node esbuild.mjs --watch",
+    "build": "node esbuild.mjs",
+    "prepare": "node esbuild.mjs"
+  },
+  "devDependencies": {
+    "coc.nvim": "^0.0.83-next.18",
+    "esbuild": "^0.19.8",
+    "typescript": "^5.3.3"
+  },
+  "activationEvents": ["*"],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "coc-serverpod configuration",
+      "properties": {
+        "coc-serverpod.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable coc-serverpod extension"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "coc-serverpod.Command",
+        "title": "coc-serverpod command title"
+      }
+    ]
+  }
+}
