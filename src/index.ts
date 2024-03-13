@@ -22,7 +22,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
     },
   };
   const clientOptions = {
-    revealOutputChannelOn: RevealOutputChannelOn.Info,
     documentSelector: [
       { scheme: "file", language: "yaml", pattern: "**/protocol/**/*.yaml" },
       { scheme: "file", language: "yaml", pattern: "**/models/**/*.yaml" },
