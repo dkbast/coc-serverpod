@@ -3,6 +3,7 @@ import {
   services,
   workspace,
   LanguageClient,
+  window,
   TransportKind,
 } from "coc.nvim";
 
@@ -37,4 +38,14 @@ export async function activate(context: ExtensionContext): Promise<void> {
     clientOptions
   );
   context.subscriptions.push(services.registLanguageClient(client));
+  client.onReady().then(() => {
+    if (!config.get<boolean>("startupMessage", true)) {
+      return;
+    }
+    const executable = serverOptions.command;
+    const args = serverOptions.args;
+    const cmd =
+      args.length === 0 ? executable : `${executable} ${args.join(" ")}`;
+    window.showMessage(`coc-serverpod: running "${cmd}"`);
+  });
 }
