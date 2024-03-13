@@ -77,5 +77,5 @@ function validVersion(versionString: string): boolean {
     return true;
   }
 
-  return satisfies(versionNumber, ">=2.2.0");
+  return satisfies(versionNumber, ">=1.2.0");
 }
